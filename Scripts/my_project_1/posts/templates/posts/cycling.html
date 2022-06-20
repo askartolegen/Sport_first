@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Boxing Page</title>
+    {% load static %}
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- bootstrap -->
+    <link href="{% static 'posts/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'posts/css/style.css' %} " rel="stylesheet">
+    <link href="{% static 'posts/css/responsive.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+    <header id="masthead" class="site-header">
+        <nav id="primary-navigation" class="site-navigation">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="agency-navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'boxing' %}">Box</a></li>
+                        <li><a href="{% url 'wrestling' %}">Wrestling</a></li>
+                        <li><a href="{% url 'athletics' %}">Athletics</a></li>
+                        <li><a href="{% url 'weightlifting' %}">Weightlifting</a></li>
+                        <li class="active"><a href="{% url 'cycling' %}">Cycling</a></li>
+                        <li><a href="{% url 'team_sports' %}">Team sports</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="hero" class="hero overlay">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Велоспорт</h1>
+                <p>
+                    pass
+                </p>
+                {% block content %}
+                <ul>
+                    {% for post in posts %}
+                    <li>
+                        <h2>{{ post.title }}</h2>
+                        {% autoescape off %}
+                        <p>{{ post.content|linebreaks|truncatewords:10}}</p>
+                        {% endautoescape %}
+                        <div class="clear"></div>
+                        <p class="link-read-post"><a href="#">Читать больше>>></a></p>
+                        <hr>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endblock %}
+            </div><!-- /.hero-text -->
+        </div><!-- /.hero-content -->
+    </div><!-- /.hero -->
+
+</body>
+</html>
